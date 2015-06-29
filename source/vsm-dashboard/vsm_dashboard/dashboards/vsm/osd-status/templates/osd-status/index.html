@@ -20,8 +20,9 @@
 {% block title %}{% trans "OSD Status" %}{% endblock %}
 
 {% block page_header %}
-  {% include "horizon/common/_page_header.html" with title=cluster.title %}
-  <link href="{{ STATIC_URL }}dashboard/css/osdstatus.css" rel="stylesheet">
+        {% include "horizon/common/_page_header.html" with title=cluster.title %}
+        <link href="{{ STATIC_URL }}dashboard/css/common.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}dashboard/css/osdstatus.css" rel="stylesheet">
 {% endblock page_header %}
 
 {% block main %}
@@ -61,7 +62,12 @@
     </div>
   </div>  
 
-    {{ table.render }}
+  <div id="divFilterStatusBar">
+    <input id="chkFilter" type="checkbox" value="">OSD are not up and in</input>
+  </div>
+
+  
+  {{ table.render }}
 
 <nav style="margin-left:auto;margin-right:auto">
        <ul class="pagination">

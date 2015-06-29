@@ -1,14 +1,16 @@
 %global with_doc %{!?_without_doc:1}%{?_without_doc:0}
+%define version %{getenv:VERSION}
+%define release %{getenv:RELEASE}
 
 Name:             vsm-deploy
-Version:          2015.01
-Release:          1.0%{?dist}
+Version:          %{version}
+Release:          %{release}
 Summary:          Deployment tool for VSM
 
 Group:            Deploy/VSM
 License:          Intel
 URL:              http://intel.com
-Source0:          vsm-deploy-%{version}.tar.gz
+Source:           %{name}-%{version}.tar.gz
 BuildArch:        noarch
 %if 0%{?suse_version}
 BuildRequires:    shadow
@@ -32,7 +34,7 @@ This package contains documentation files for vsm.
 %endif
 
 %prep
-%setup -q -n vsm-deploy-%{version}
+%setup -q -n %{name}-%{version}
 
 %build
 
@@ -174,8 +176,3 @@ exit 0
 %config(noreplace) %attr(-, root, vsm) %{_sysconfdir}/manifest/cluster.manifest
 %endif
 
-%changelog
-* Thu May 28 2015 Eric Jackson <ejackson@suse.com> 2015.01
-+- distribution specific changes, reduce rpmlint warnings
-* Mon Feb 17 2014 Ji You <ji.you@intel.com> - 2014.2.17-2
-- Initial release
